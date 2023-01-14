@@ -25,8 +25,14 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: #f00;
+   background-color: #ccc;
    border-radius: 6px;
    margin: 3px;
    cursor: pointer;
+}
+.board-cell.player-O {
+   background-color: #f12;
+}
+.board-cell.player-X {
+   background-color: #12f;
 }
