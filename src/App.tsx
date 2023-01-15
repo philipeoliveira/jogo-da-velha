@@ -4,7 +4,7 @@ import './App.css';
 type Players = 'O' | 'X';
 
 function App() {
-   const [turn, setTurn] = useState<Players>('O');
+   const [turn, setTurn] = useState<Players>('X');
    const [winner, setWinner] = useState<Players | null>(null);
    const [draw, setDraw] = useState<boolean | null>(null);
    const [choices, setChoices] = useState<{ [key: string]: Players }>({});
@@ -16,6 +16,10 @@ function App() {
    };
 
    const play = (index: number) => {
+      if (choices[index] || gameOver) {
+         return;
+      }
+
       setChoices((prev) => ({ ...prev, [index]: turn }));
       setTurn((prev) => (prev === 'O' ? 'X' : 'O'));
    };
@@ -56,6 +60,7 @@ function App() {
    };
 
    const restartGame = () => {
+      setTurn(choices[0] === 'O' ? 'X' : 'O');
       setChoices({});
       setWinner(null);
       setDraw(null);
@@ -66,6 +71,8 @@ function App() {
 
       if (winner) {
          setWinner(winner);
+      } else if (Object.keys(choices).length === 9) {
+         setDraw(true);
       }
    }, [choices]);
 
@@ -73,8 +80,8 @@ function App() {
       <div className='game-container'>
          {!gameOver && <p>É a vez do jogador {turn}</p>}
          {winner && <p>{winner} ganhou!</p>}
-         {/* <p>Empate</p> */}
-         <div className='game-board'>
+         {draw && <p>Empate</p>}
+         <div className={`game-board${gameOver ? ' game-over' : ''}`}>
             {createCells().map((_, i) => (
                <div
                   className={`board-cell${
@@ -89,7 +96,11 @@ function App() {
                </div>
             ))}
          </div>
-         {gameOver && <button onClick={restartGame}>Reiniciar o jogo</button>}
+         {gameOver && (
+            <button className='restart-game' onClick={restartGame}>
+               Reiniciar o jogo
+            </button>
+         )}
       </div>
    );
 }
