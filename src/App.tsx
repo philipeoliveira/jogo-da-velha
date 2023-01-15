@@ -9,6 +9,8 @@ function App() {
    const [draw, setDraw] = useState<boolean | null>(null);
    const [choices, setChoices] = useState<{ [key: string]: Players }>({});
 
+   const gameOver = !!winner || !!draw;
+
    const createCells = () => {
       return new Array(9).fill(true);
    };
@@ -53,6 +55,12 @@ function App() {
       }
    };
 
+   const restartGame = () => {
+      setChoices({});
+      setWinner(null);
+      setDraw(null);
+   };
+
    useEffect(() => {
       const winner = getWinner();
 
@@ -63,7 +71,7 @@ function App() {
 
    return (
       <div className='game-container'>
-         <p>É a vez do jogador {turn}</p>
+         {!gameOver && <p>É a vez do jogador {turn}</p>}
          {winner && <p>{winner} ganhou!</p>}
          {/* <p>Empate</p> */}
          <div className='game-board'>
@@ -81,7 +89,7 @@ function App() {
                </div>
             ))}
          </div>
-         <button>Reiniciar o jogo</button>
+         {gameOver && <button onClick={restartGame}>Reiniciar o jogo</button>}
       </div>
    );
 }
