@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { ArrowSquareOut, ArrowCounterClockwise } from 'phosphor-react';
+import Logo from './assets/logo-jogo-da-velha.png';
 import './App.css';
 
 type Players = 'O' | 'X';
@@ -78,29 +80,74 @@ function App() {
 
    return (
       <div className='game-container'>
-         {!gameOver && <p>É a vez do jogador {turn}</p>}
-         {winner && <p>{winner} ganhou!</p>}
-         {draw && <p>Empate</p>}
-         <div className={`game-board${gameOver ? ' game-over' : ''}`}>
-            {createCells().map((_, i) => (
-               <div
-                  className={`board-cell${
-                     getCellPlayer(i) === undefined
-                        ? ''
-                        : ' player-' + getCellPlayer(i)
-                  }`}
-                  key={i}
-                  onClick={() => play(i)}
+         <header>
+            <img src={Logo} className='game-logo' alt='Logo Jogo da Velha' />
+         </header>
+         <main className='flex-col-center'>
+            {!gameOver && (
+               <h1 className='flex-row-center'>
+                  É a vez do{' '}
+                  <span
+                     className={`flex-col-center player-turn${
+                        turn === 'O' ? ' player-O' : ' player-X'
+                     }`}
+                  >
+                     {turn}
+                  </span>
+               </h1>
+            )}
+            {winner && (
+               <p className='game-result flex-row-center'>
+                  {' '}
+                  <span
+                     className={`flex-col-center player-turn${
+                        winner === 'O' ? ' player-O' : ' player-X'
+                     }`}
+                  >
+                     {winner}
+                  </span>{' '}
+                  ganhou!
+               </p>
+            )}
+            {draw && <p className='game-result'>Empate</p>}
+            <div className={`game-board${gameOver ? ' game-over' : ''}`}>
+               {createCells().map((_, i) => (
+                  <div
+                     className={`board-cell${
+                        getCellPlayer(i) === undefined
+                           ? ''
+                           : ' player-' + getCellPlayer(i)
+                     }`}
+                     key={i}
+                     onClick={() => play(i)}
+                  >
+                     {choices[i]}
+                  </div>
+               ))}
+            </div>
+         </main>
+         <footer className='flex-col-center restart-game-container'>
+            {gameOver && (
+               <button
+                  className='restart-game flex-row-center'
+                  onClick={restartGame}
                >
-                  {choices[i]}
-               </div>
-            ))}
-         </div>
-         {gameOver && (
-            <button className='restart-game' onClick={restartGame}>
-               Reiniciar o jogo
-            </button>
-         )}
+                  <ArrowCounterClockwise size={15} weight='bold' />
+                  Reiniciar o jogo
+               </button>
+            )}
+            <p>
+               Desenvolvido por{' '}
+               <a
+                  href='https://github.com/philipeoliveira'
+                  title='Abrir em nova aba o GitHub do autor Philipe Oliveira'
+                  target='_blank'
+               >
+                  Philipe Oliveira
+               </a>
+               <ArrowSquareOut color={'var(--color-text)'} size='10' />
+            </p>
+         </footer>
       </div>
    );
 }
