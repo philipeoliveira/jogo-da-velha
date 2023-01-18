@@ -48,7 +48,7 @@ body::-webkit-scrollbar-thumb:active {
    background-color: var(--color-hover);
 }
 a {
-   color: var(--color-text);
+   color: var(--color-contrast);
    transition: all 0.3s;
 }
 a:focus,

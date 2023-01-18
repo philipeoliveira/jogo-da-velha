@@ -145,7 +145,7 @@ function App() {
                >
                   Philipe Oliveira
                </a>
-               <ArrowSquareOut color={'var(--color-text)'} size='10' />
+               <ArrowSquareOut color={'var(--color-contrast)'} size='10' />
             </p>
          </footer>
       </div>
