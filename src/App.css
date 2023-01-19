@@ -97,7 +97,7 @@ header {
    stroke: var(--color-text);
    stroke-dasharray: 171;
    stroke-dashoffset: 171;
-   animation: txt-logo 3.5s linear forwards;
+   animation: txt-logo 4.5s linear forwards;
 }
 #rectangle-light-blue {
    animation: rectangle-light-blue 2s ease forwards;
