@@ -80,12 +80,30 @@ a:active {
 header {
    margin-bottom: var(--size-xs);
 }
-header img {
-   animation: slide-down 1400ms cubic-bezier(0.35, 0.1, 0.4, 1);
-}
+/* ANIMATED LOGO */
 .game-logo {
    width: 100%;
    max-width: calc(var(--size-lg) * 9);
+   transform: translateY(-100%);
+   animation: slide-down 1.2s cubic-bezier(0.35, 0.1, 0.4, 1) forwards;
+}
+.game-logo svg {
+   width: 100%;
+}
+#svg-txt-hashtag,
+#svg-txt-jogo-da-velha {
+   fill: var(--color-text);
+   stroke-width: 1px;
+   stroke: var(--color-text);
+   stroke-dasharray: 171;
+   stroke-dashoffset: 171;
+   animation: txt-logo 3.5s linear forwards;
+}
+#rectangle-light-blue {
+   animation: rectangle-light-blue 2s ease forwards;
+   border-radius: 6px;
+   transform: translate(-4px, -4px);
+   opacity: 0;
 }
 main h1,
 main p {
@@ -93,7 +111,8 @@ main p {
    margin-bottom: var(--size-sm);
 }
 main h1 {
-   animation: fade-in 1800ms linear;
+   animation: fade-in, flash 2.5s linear forwards;
+   opacity: 0;
 }
 .game-board {
    max-width: 300px;
@@ -117,7 +136,7 @@ main h1 {
    border-radius: 6px;
    margin: 3px;
    transition: 0.4s;
-   animation: zoom-in 350ms ease;
+   animation: zoom-in 400ms ease;
 }
 .player-turn {
    width: calc(var(--size-sm) + var(--size-sm-md));
@@ -169,7 +188,16 @@ footer button {
 .restart-game:focus {
    box-shadow: 0 0 8px var(--color-contrast);
 }
+.restart-game:hover svg,
+.restart-game:focus svg {
+   animation: rotate 250ms ease-in;
+}
 
+@keyframes rotate {
+   to {
+      transform: rotate(360deg);
+   }
+}
 @keyframes pulse {
    0% {
       transform: scale(1);
@@ -211,6 +239,11 @@ footer button {
    }
 }
 @keyframes fade-in {
+   to {
+      opacity: 1;
+   }
+}
+@keyframes flash {
    0% {
       opacity: 0;
    }
@@ -262,33 +295,61 @@ footer button {
    0% {
       transform: translateY(-100%);
    }
-   40% {
+   30% {
       transform: translateY(0);
+   }
+   40% {
+      transform: translateY(-6%);
    }
    50% {
-      transform: translateY(-10%);
-   }
-   60% {
       transform: translateY(0);
    }
-   70% {
-      transform: translateY(-8%);
+   65% {
+      transform: translateY(-3%);
    }
-   80% {
+   75% {
       transform: translateY(0);
    }
-   90% {
-      transform: translateY(-4%);
+   85% {
+      transform: translateY(-1%);
+   }
+   to {
+      transform: translateY(0);
+   }
+}
+@keyframes rectangle-light-blue {
+   0% {
+      border-radius: 6px;
+      transform: translate(-4px, -4px);
+      opacity: 0;
    }
    100% {
-      transform: translateY(0);
+      border-radius: 6px;
+      transform: translate(0);
+      opacity: 1;
+   }
+}
+@keyframes txt-logo {
+   0% {
+      stroke-dashoffset: 0;
+      fill: transparent;
+   }
+   35% {
+      stroke-dashoffset: 171;
+   }
+   40% {
+      fill: var(--color-text);
+   }
+   100% {
+      stroke-dashoffset: 171;
+      fill: var(--color-text);
    }
 }
 
 @media screen and (max-width: 340px) {
    main h1,
    main p {
-      font-size: var(--size-sm-md);
+      font-size: var(--size-sm);
       margin-bottom: var(--size-sm);
    }
    .player-turn {
