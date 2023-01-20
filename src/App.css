@@ -152,6 +152,25 @@ main h1 {
 .player-X {
    background-color: var(--color-secondary);
 }
+.player-O svg {
+   stroke-width: 1px;
+   stroke: var(--color-text);
+   stroke-dasharray: 100;
+   stroke-dashoffset: 100;
+   animation: draw-letter-o 2s ease forwards;
+}
+.player-X svg #line-1 {
+   stroke: var(--color-text);
+   stroke-dasharray: 55;
+   stroke-dashoffset: 55;
+   animation: draw-letter-x 2s ease forwards;
+}
+.player-X svg #line-2 {
+   stroke: var(--color-text);
+   stroke-dasharray: 55;
+   stroke-dashoffset: 55;
+   animation: draw-letter-x 2s ease 500ms forwards;
+}
 .game-result {
    animation: pulse 1600ms linear;
 }
@@ -343,6 +362,30 @@ footer button {
    100% {
       stroke-dashoffset: 171;
       fill: var(--color-text);
+   }
+}
+@keyframes draw-letter-o {
+   0% {
+      stroke-dashoffset: 100;
+   }
+   35% {
+      stroke-dashoffset: 0;
+   }
+
+   100% {
+      stroke-dashoffset: 0;
+   }
+}
+@keyframes draw-letter-x {
+   0% {
+      stroke-dashoffset: 55;
+   }
+   35% {
+      stroke-dashoffset: 0;
+   }
+
+   100% {
+      stroke-dashoffset: 0;
    }
 }
 

@@ -71,9 +71,9 @@ function App() {
       const winner = getWinner();
 
       if (winner) {
-         setWinner(winner);
+         setTimeout(() => setWinner(winner), 800);
       } else if (Object.keys(choices).length === 9) {
-         setDraw(true);
+         setTimeout(() => setDraw(true), 800);
       }
    }, [choices]);
 
@@ -180,7 +180,47 @@ function App() {
                      key={i}
                      onClick={() => play(i)}
                   >
-                     {choices[i]}
+                     {choices[i] === 'X' && (
+                        <svg
+                           width='27'
+                           height='50'
+                           viewBox='0 0 27 50'
+                           fill='none'
+                           xmlns='http://www.w3.org/2000/svg'
+                        >
+                           <path
+                              id='line-2'
+                              d='M4 12C4 12 13.5 36 21 31.5'
+                              stroke='var(--color-text)'
+                              stroke-width='3'
+                              stroke-linecap='round'
+                           />
+                           <path
+                              id='line-1'
+                              d='M25.5 2C25.5 2 -8 50 4.5 47.5'
+                              stroke='var(--color-text)'
+                              stroke-width='3'
+                              stroke-linecap='round'
+                           />
+                        </svg>
+                     )}
+                     {choices[i] === 'O' && (
+                        <svg
+                           width='33'
+                           height='38'
+                           viewBox='0 0 33 38'
+                           fill='none'
+                           xmlns='http://www.w3.org/2000/svg'
+                        >
+                           <path
+                              id='circle'
+                              d='M19.5759 9.17636C17.2333 8.99616 18.0309 4.63639 18 3C17.9462 0.150335 13.2324 4.57463 11.5 7C9 10.5 6.75006 13.4472 5.5 17C3.00002 22.5 2.56182 24.2397 2 27.5C1.43819 30.7603 2.63658 35.0024 7.49998 36C10.6726 36.8588 14.7516 34.835 17.5964 33.5C21.2845 31.7693 24.5763 29.5885 27 26.5C29.3375 23.5213 30.0485 22.4901 30.5 19C30.8526 16.2742 29.7127 11.8549 28 9.5C25.856 6.55202 22.7386 5.43726 19.3559 5.43726'
+                              stroke='var(--color-text)'
+                              stroke-width='3'
+                              stroke-linecap='round'
+                           />
+                        </svg>
+                     )}
                   </div>
                ))}
             </div>
