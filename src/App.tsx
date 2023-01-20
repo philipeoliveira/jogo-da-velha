@@ -192,15 +192,15 @@ function App() {
                               id='line-2'
                               d='M4 12C4 12 13.5 36 21 31.5'
                               stroke='var(--color-text)'
-                              stroke-width='3'
-                              stroke-linecap='round'
+                              strokeWidth='3'
+                              strokeLinecap='round'
                            />
                            <path
                               id='line-1'
                               d='M25.5 2C25.5 2 -8 50 4.5 47.5'
                               stroke='var(--color-text)'
-                              stroke-width='3'
-                              stroke-linecap='round'
+                              strokeWidth='3'
+                              strokeLinecap='round'
                            />
                         </svg>
                      )}
