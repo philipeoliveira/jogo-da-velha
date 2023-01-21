@@ -30,7 +30,7 @@
    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-   background-color: var(--color-dark);
+   background: fixed url('./assets/bg-jogo-da-velha.png') var(--color-dark);
    font-family: 'Rock Salt', cursive, sans-serif;
 }
 body::-webkit-scrollbar,
@@ -114,6 +114,9 @@ main h1 {
    animation: fade-in, flash 2.5s linear forwards;
    opacity: 0;
 }
+.game-board-container {
+   background-color: var(--color-dark);
+}
 .game-board {
    max-width: 300px;
    display: flex;
@@ -137,6 +140,10 @@ main h1 {
    margin: 3px;
    transition: 0.4s;
    animation: zoom-in 400ms ease;
+}
+.board-cell:hover,
+.board-cell:focus {
+   opacity: 0.8;
 }
 .player-turn {
    width: calc(var(--size-sm) + var(--size-sm-md));
