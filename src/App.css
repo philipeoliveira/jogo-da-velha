@@ -123,7 +123,7 @@ main h1 {
 }
 .game-board.game-over {
    cursor: default;
-   opacity: 0.3;
+   animation: fade-out-3 2s ease forwards;
 }
 .board-cell {
    width: 94px;
@@ -148,9 +148,11 @@ main h1 {
 }
 .player-O {
    background-color: var(--color-primary);
+   box-shadow: 0 0 6px var(--color-primary);
 }
 .player-X {
    background-color: var(--color-secondary);
+   box-shadow: 0 0 6px var(--color-secondary);
 }
 .player-O svg {
    stroke-width: 1px;
@@ -163,13 +165,13 @@ main h1 {
    stroke: var(--color-text);
    stroke-dasharray: 55;
    stroke-dashoffset: 55;
-   animation: draw-letter-x 2s ease forwards;
+   animation: draw-letter-x-line-1 500ms ease forwards;
 }
 .player-X svg #line-2 {
    stroke: var(--color-text);
-   stroke-dasharray: 55;
-   stroke-dashoffset: 55;
-   animation: draw-letter-x 2s ease 500ms forwards;
+   stroke-dasharray: 30;
+   stroke-dashoffset: 30;
+   animation: draw-letter-x-line-2 600ms ease 400ms forwards;
 }
 .game-result {
    animation: pulse 1600ms linear;
@@ -260,6 +262,11 @@ footer button {
 @keyframes fade-in {
    to {
       opacity: 1;
+   }
+}
+@keyframes fade-out-3 {
+   to {
+      opacity: 0.3;
    }
 }
 @keyframes flash {
@@ -376,11 +383,23 @@ footer button {
       stroke-dashoffset: 0;
    }
 }
-@keyframes draw-letter-x {
+@keyframes draw-letter-x-line-1 {
    0% {
       stroke-dashoffset: 55;
    }
-   35% {
+   50% {
+      stroke-dashoffset: 0;
+   }
+
+   100% {
+      stroke-dashoffset: 0;
+   }
+}
+@keyframes draw-letter-x-line-2 {
+   0% {
+      stroke-dashoffset: 30;
+   }
+   60% {
       stroke-dashoffset: 0;
    }
 
