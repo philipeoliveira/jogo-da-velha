@@ -8,6 +8,7 @@ function App() {
    const [turn, setTurn] = useState<Players>('X');
    const [winner, setWinner] = useState<Players | null>(null);
    const [draw, setDraw] = useState<boolean | null>(null);
+   const [firstChoice, setFirstChoice] = useState<number | null>(null);
    const [choices, setChoices] = useState<{ [key: string]: Players }>({});
 
    const gameOver = !!winner || !!draw;
@@ -20,6 +21,8 @@ function App() {
       if (choices[index] || gameOver) {
          return;
       }
+
+      if (!firstChoice && firstChoice != 0) setFirstChoice(index);
 
       setChoices((prev) => ({ ...prev, [index]: turn }));
       setTurn((prev) => (prev === 'O' ? 'X' : 'O'));
@@ -61,7 +64,8 @@ function App() {
    };
 
    const restartGame = () => {
-      setTurn(choices[0] === 'O' ? 'X' : 'O');
+      firstChoice && setTurn(choices[firstChoice] === 'O' ? 'X' : 'O');
+      setFirstChoice(null);
       setChoices({});
       setWinner(null);
       setDraw(null);
